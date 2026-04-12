@@ -1,0 +1,146 @@
+body{
+    background-color: #FDFBD4;
+}
+
+.header{
+    display: flex;
+    
+}
+.header img {
+    height: 150px;
+}
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 400px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #b76b6b;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.nav-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: white;
+}
+
+
+/* image scrolling to left and right */
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This ensures images fill the area without distortion */
+  display: block;
+}
+
+.slider-container {
+    padding-top: 50px;
+  position: relative;
+  width: 80%;
+  max-width: 1000px;
+  margin: auto;
+  overflow: hidden; /* Hides the slides outside the window */
+  border-radius: 10px;
+  height: 500px;
+  
+}
+
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* The magic happens here */
+  will-change: transform;
+}
+
+.slide {
+  min-width: 100%; /* Each slide takes up the full width of the container */
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Button Styling */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.3);
+  border: none;
+  color: white;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.nav-btn:hover { background: rgba(0,0,0,0.6); }
+.prev { left: 10px; }
+.next { right: 10px; }
+
+
+/* paragraphs */
+
+.para{
+    padding-left: 50px ;
+    width: 1000px;
+}
+
+/* footer css */
+
+.footer {
+    background-color: #2c3e50;
+    color: white;
+    margin-top: 50px;
+    padding: 30px 20px 10px;
+    border-radius: 10px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    margin: 10px;
+    max-width: 300px;
+}
+
+.footer-section h2,
+.footer-section h3 {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    display: block;
+    color: #ecf0f1;
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+.footer-section a:hover {
+    color: #1abc9c;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #7f8c8d;
+    padding-top: 10px;
+    font-size: 14px;
+}
+
+
+
+/*  diet plan for seven days CSS*/
+

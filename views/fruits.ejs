@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/veg.css" />
+  </head>
+  <body>
+    <div class="container">
+  <h1> 🍎Fruits</h1>
+
+  <% foods.forEach(food => { %>
+    <div class="items">
+      <img src="<%= food.image %>" alt="" />
+
+      <div>
+        <h3><%= food.name %></h3>
+
+        Status: <%= food.status %> <br />
+        Glycemic Index: <%= food.glycemicIndex %> <br />
+        Best Time: <%= food.bestTime %> <br />
+        Benefits: <%= food.benefits %> <br />
+      </div>
+    </div>
+  <% }) %>
+</div>
+<div class="pagging">
+  <% if (currentPage > 1) { %>
+    <a href="/fruits?page=<%= currentPage - 1 %>">Previous</a>
+  <% } %>
+
+  <% for (let i = 1; i <= totalPages; i++) { %>
+    <a href="/fruits?page=<%= i %>"><%= i %></a>
+  <% } %>
+
+  <% if (currentPage < totalPages) { %>
+    <a href="/fruits?page=<%= currentPage + 1 %>">Next</a>
+  <% } %>
+</div>
+  </body>
+</html>

@@ -28,7 +28,7 @@ mongoose
 // ✅ Home route
 app.get("/", (req, res) => {
   // If using HTML:
-  res.sendFile(path.join(__dirname, "views", "index.html"));
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 
   // 👉 OR if you convert to EJS:
   // res.render("index");

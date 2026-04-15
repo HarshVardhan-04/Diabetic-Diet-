@@ -185,90 +185,157 @@
 // });
 
 
-require("dotenv").config(); // ✅ must be at top
+// require("dotenv").config(); // ✅ must be at top
 
+// const express = require("express");
+// const mongoose = require("mongoose");
+// const path = require("path");
+
+// const app = express();
+
+// // ✅ Use dynamic port (IMPORTANT for Render)
+// const PORT = process.env.PORT || 3000;
+
+// // ✅ Import model
+// const Food = require("./models/schema");
+
+// // ✅ Static folder (fix for CSS, JS, images)
+// app.use(express.static(path.join(__dirname, "public")));
+// app.set("views", path.join(__dirname, "views"));
+// app.set("view engine", "ejs");
+
+// // ✅ MongoDB connection (using env variable)
+// mongoose
+//   .connect(process.env.MONGO_URI)
+//   .then(() => console.log("DB connected ✅"))
+//   .catch((err) => console.log(err));
+
+// // ================= ROUTES =================
+
+// // ✅ Home route (serving HTML from public)
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "public", "index.html"));
+// });
+
+// // ✅ Vegetables route
+// app.get("/vegetables", async (req, res) => {
+//   try {
+//     let page = parseInt(req.query.page) || 1;
+//     let limit = 5;
+//     let skip = (page - 1) * limit;
+
+//     const foods = await Food.find({ category: "vegetable" })
+//       .skip(skip)
+//       .limit(limit);
+
+//     const total = await Food.countDocuments({ category: "vegetable" });
+
+//     res.render("vegetables", {
+//       foods,
+//       currentPage: page,
+//       totalPages: Math.ceil(total / limit),
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     res.send("Error loading vegetables");
+//   }
+// });
+
+// // ✅ Fruits route
+// app.get("/fruits", async (req, res) => {
+//   try {
+//     let page = parseInt(req.query.page) || 1;
+//     let limit = 5;
+//     let skip = (page - 1) * limit;
+
+//     const foods = await Food.find({ category: "fruit" })
+//       .skip(skip)
+//       .limit(limit);
+
+//     const total = await Food.countDocuments({ category: "fruit" });
+
+//     res.render("fruits", {
+//       foods,
+//       currentPage: page,
+//       totalPages: Math.ceil(total / limit),
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     res.send("Error loading fruits");
+//   }
+// });
+
+// // ================= SERVER =================
+
+// // ❌ removed "open" package (breaks deployment)
+// // ✅ simple server start
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
+
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 
 const app = express();
-
-// ✅ Use dynamic port (IMPORTANT for Render)
 const PORT = process.env.PORT || 3000;
 
 // ✅ Import model
 const Food = require("./models/schema");
 
-// ✅ Static folder (fix for CSS, JS, images)
+// ✅ Middleware & View Engine
+// This tells Express that anything inside 'public' is at the root level
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-// ✅ MongoDB connection (using env variable)
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("DB connected ✅"))
-  .catch((err) => console.log(err));
+// ✅ MongoDB connection with error handling
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI);
+    console.log(`MongoDB Connected: ${conn.connection.host} ✅`);
+  } catch (error) {
+    console.error("Database connection error ❌:", error.message);
+    process.exit(1); // Exit process with failure
+  }
+};
+connectDB();
 
 // ================= ROUTES =================
 
-// ✅ Home route (serving HTML from public)
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// ✅ Vegetables route
-app.get("/vegetables", async (req, res) => {
+// Helper for pagination to avoid code repetition
+const getFoodByCategory = async (category, req, res) => {
   try {
     let page = parseInt(req.query.page) || 1;
     let limit = 5;
     let skip = (page - 1) * limit;
 
-    const foods = await Food.find({ category: "vegetable" })
+    const foods = await Food.find({ category })
       .skip(skip)
       .limit(limit);
 
-    const total = await Food.countDocuments({ category: "vegetable" });
+    const total = await Food.countDocuments({ category });
 
-    res.render("vegetables", {
+    res.render(category === "vegetable" ? "vegetables" : "fruits", {
       foods,
       currentPage: page,
       totalPages: Math.ceil(total / limit),
     });
   } catch (err) {
-    console.log(err);
-    res.send("Error loading vegetables");
+    console.error(err);
+    res.status(500).send(`Error loading ${category}s`);
   }
-});
+};
 
-// ✅ Fruits route
-app.get("/fruits", async (req, res) => {
-  try {
-    let page = parseInt(req.query.page) || 1;
-    let limit = 5;
-    let skip = (page - 1) * limit;
-
-    const foods = await Food.find({ category: "fruit" })
-      .skip(skip)
-      .limit(limit);
-
-    const total = await Food.countDocuments({ category: "fruit" });
-
-    res.render("fruits", {
-      foods,
-      currentPage: page,
-      totalPages: Math.ceil(total / limit),
-    });
-  } catch (err) {
-    console.log(err);
-    res.send("Error loading fruits");
-  }
-});
+app.get("/vegetables", (req, res) => getFoodByCategory("vegetable", req, res));
+app.get("/fruits", (req, res) => getFoodByCategory("fruit", req, res));
 
 // ================= SERVER =================
-
-// ❌ removed "open" package (breaks deployment)
-// ✅ simple server start
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

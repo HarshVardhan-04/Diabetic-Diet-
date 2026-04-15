@@ -1,53 +1,131 @@
-body{
-    background-color: #FDFBD4;
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1{
-    text-align: center;
-    color: aqua;
-    padding: 10px 0px 10px 0px;
-    border-bottom: 3px solid rgb(244, 190, 190);
+body {
+    background-color: #121212; /* Dark Background */
+    color: #e0e0e0;
+    line-height: 1.6;
 }
 
-.container{
-    width: 900px;
-    margin-left: 320px;
-    background-color: #C05800;
-    border-radius: 30px;
-}
-
-.items{
-    display: flex;
-    margin: 40px;
-    border-bottom: 2px solid white;
+h4 a{
+    margin: 100px;
+    padding: 10px;
+    text-decoration: none;
     color: white;
-
+    background-color: #2c3e50;
+    border-radius: 4px;
+}
+/* Header/H1 Styling */
+h1 {
+    text-align: center;
+    color: #1abc9c; /* Mint Green Accent */
+    padding: 30px 0;
+    border-bottom: 2px solid #333;
+    background-color: #1f1f1f;
 }
 
- img{
-    width: 180px;
-    height: 180px;
-    padding: 10px 25px 20px 10px;
+/* Main Container - Now Responsive */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto; /* Centers the container without hardcoded margins */
+    background-color: #1f1f1f;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.items:hover{
-    transform: scale(1.1);
-  box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
-  border-radius: 20px;
+/* Individual Item Cards */
+.items {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    padding: 15px;
+    border-bottom: 1px solid #333;
+    color: #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.items:hover {
+    transform: translateY(-5px); /* Lift effect instead of just scale */
+    background-color: #2c3e50;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(26, 188, 156, 0.2);
+}
+
+/* Image Styling */
+.items img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-right: 30px;
+    border: 1px solid #444;
+}
+
+/* Item Text Info */
+.items div {
+    flex: 1;
+}
+
+.items h2 {
+    color: #f39c12; /* Coral/Orange accent for food names */
+    margin-bottom: 10px;
+}
+
+/* Pagination Controls */
+.pagging {
+    display: flex;
+    justify-content: center; /* Centers pagination perfectly */
+    padding: 40px 0;
 }
 
 .pagging a {
-    padding: 8px 12px;
-    margin: 5px;
-    border: 1px solid #333;
+    padding: 10px 18px;
+    margin: 0 5px;
+    border: 1px solid #1abc9c;
     text-decoration: none;
-    
+    color: #1abc9c;
+    border-radius: 5px;
+    transition: all 0.3s;
+    background-color: transparent;
 }
 
-.pagging a:hover {
-    background-color: #f1bfbf;
+.pagging a.active, .pagging a:hover {
+    background-color: #1abc9c;
+    color: #121212;
+    font-weight: bold;
 }
 
-.pagging{
-    padding-left: 500px;
+/* ==========================================
+   RESPONSIVE DESIGN (Mobile)
+   ========================================== */
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .items {
+        flex-direction: column; /* Stacks image on top of text */
+        text-align: center;
+        padding-bottom: 30px;
+    }
+
+    .items img {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 100%;
+        height: 200px; /* Larger image view on mobile */
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
 }

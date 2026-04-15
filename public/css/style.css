@@ -1,146 +1,225 @@
-body{
-    background-color: #FDFBD4;
+
+
+/*  diet plan for seven days CSS*/
+
+/* General Reset & Dark Mode Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.header{
-    display: flex;
-    
+body {
+    background-color: #121212; /* Deep Dark Background */
+    color: #e0e0e0;           /* Soft White Text */
+    line-height: 1.6;
 }
-.header img {
-    height: 150px;
-}
-h1{
+
+/* Header Section */
+.header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding-left: 400px;
+    padding: 20px;
+    background-color: #1f1f1f;
+    border-bottom: 2px solid #333;
 }
 
+.header img.logo {
+    height: 80px; /* Reduced for better look */
+    border-radius: 50%;
+    border: 2px solid #1abc9c;
+}
+
+h1 {
+    flex-grow: 1;
+    text-align: center;
+    color: #1abc9c; /* Mint Green Accent */
+    font-size: 2.5rem;
+}
+
+/* Navbar */
 .navbar {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #b76b6b;
-    padding: 10px 20px;
-    border-radius: 10px;
+    justify-content: center;
+    background-color: #2c3e50;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .nav-links a {
-    margin: 0 10px;
+    margin: 0 20px;
     text-decoration: none;
-    color: white;
+    color: #ffffff;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: color 0.3s;
 }
 
-
-/* image scrolling to left and right */
-
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* This ensures images fill the area without distortion */
-  display: block;
+.nav-links a:hover {
+    color: #1abc9c;
 }
 
+/* Slider Container */
 .slider-container {
-    padding-top: 50px;
-  position: relative;
-  width: 80%;
-  max-width: 1000px;
-  margin: auto;
-  overflow: hidden; /* Hides the slides outside the window */
-  border-radius: 10px;
-  height: 500px;
-  
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1000px;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .slider-wrapper {
-  display: flex;
-  transition: transform 0.5s ease-in-out; /* The magic happens here */
-  will-change: transform;
+    display: flex;
+    height: 100%;
 }
 
-.slide {
-  min-width: 100%; /* Each slide takes up the full width of the container */
-  height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-/* Button Styling */
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.3);
-  border: none;
-  color: white;
-  padding: 15px;
-  cursor: pointer;
-  border-radius: 50%;
+/* Paragraph Content Area */
+.para {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
-.nav-btn:hover { background: rgba(0,0,0,0.6); }
-.prev { left: 10px; }
-.next { right: 10px; }
-
-
-/* paragraphs */
-
-.para{
-    padding-left: 50px ;
-    width: 1000px;
+.para h2 {
+    color: #1abc9c;
+    margin-bottom: 20px;
+    border-left: 5px solid #1abc9c;
+    padding-left: 15px;
 }
 
-/* footer css */
+.para h3 {
+    color: #f39c12; /* Orange-ish accent for subheaders */
+    margin: 20px 0 10px;
+}
 
-.footer {
-    background-color: #2c3e50;
-    color: white;
-    margin-top: 50px;
-    padding: 30px 20px 10px;
+.para p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #bbbbbb;
+}
+
+/* Diet Chart Image Styling */
+.para a img {
+    width: 100%;
+    height: auto;
     border-radius: 10px;
+    transition: transform 0.3s ease;
+    border: 1px solid #444;
+}
+
+.para a img:hover {
+    transform: scale(1.02);
+}
+
+/* Footer Section */
+.footer {
+    background-color: #1a1a1a;
+    color: #888;
+    padding: 50px 20px 20px;
+    margin-top: 60px;
+    border-top: 1px solid #333;
 }
 
 .footer-container {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-.footer-section {
-    margin: 10px;
-    max-width: 300px;
-}
-
-.footer-section h2,
-.footer-section h3 {
-    margin-bottom: 10px;
+.footer-section h2, .footer-section h3 {
+    color: #e0e0e0;
+    margin-bottom: 15px;
 }
 
 .footer-section a {
-    display: block;
-    color: #ecf0f1;
+    color: #888;
     text-decoration: none;
-    margin: 5px 0;
+    display: block;
+    margin-bottom: 8px;
 }
 
 .footer-section a:hover {
     color: #1abc9c;
 }
 
-.footer-bottom {
-    text-align: center;
-    margin-top: 20px;
-    border-top: 1px solid #7f8c8d;
-    padding-top: 10px;
-    font-size: 14px;
+/* ==========================================
+   RESPONSIVE DESIGN (Mobile Friendly)
+   ========================================== */
+
+@media (max-width: 768px) {
+    /* Header stacks vertically */
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    h1 {
+        padding-left: 0;
+        margin-top: 15px;
+        font-size: 1.8rem;
+    }
+
+    /* Navbar links wrap */
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        margin: 5px 10px;
+    }
+
+    /* Slider gets smaller */
+    .slider-container {
+        height: 250px;
+        width: 95%;
+    }
+
+    /* Paragraphs take full width */
+    .para {
+        width: 100%;
+    }
+
+    /* Footer sections stack */
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-section {
+        margin-bottom: 30px;
+        max-width: 100%;
+    }
 }
 
+/* Ensure the wrapper is wide enough to hold all slides side-by-side */
+.slider-wrapper {
+    display: flex;
+    width: 100%; /* The container width */
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother movement */
+}
 
+.slide {
+    min-width: 100%; /* Each slide must be exactly the width of the container */
+    height: 100%;    /* Match the container height */
+}
 
-/*  diet plan for seven days CSS*/
-
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This prevents the 'black bars' around images */
+}
